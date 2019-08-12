@@ -3,7 +3,7 @@ version: '3.5'
 services:
    wordpress:
      image: wordpress:latest
-     container_name: my-wp1
+     container_name: {my-container-name} #好きな名前を入れる
      depends_on:
        - db
      ports:
@@ -19,7 +19,7 @@ services:
 
    db:
      image: mysql:5.7
-     container_name: my-wp1-db
+     container_name: {my-container-name-db} #好きな名前を入れる
      volumes:
        - db_data:/var/lib/mysql
      restart: always
