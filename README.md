@@ -30,6 +30,15 @@ login to db container
 check the container env  
 `# env`
 
-login to mysql  
+login to mysql(mysql_root_user)  
+`# mysql -u root -p`  
+Enter the password
+
+login to mysql(mysql_user)  
 `# mysql -u wordpress -p`  
 Enter the password
+
+#### Network
+check the network  
+`$ docker network ls`  
+`$ docker network inspect [Network ID or NAME]`  
