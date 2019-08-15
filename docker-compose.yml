@@ -1,34 +1,42 @@
 version: '3.5'
 
 services:
-   wordpress:
-     image: wordpress:latest
-     container_name: {my-container-name} #好きな名前を入れる
-     depends_on:
-       - db
-     ports:
-       - "8000:80"
-     restart: always
-     environment:
+# Wordpress
+  wordpress:
+    image: wordpress:latest
+    #好きな名前を入れる
+    container_name: wp_cs1 
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
-     volumes:
+    volumes:
        - ./html:/var/www/html
+    networks:
+      - wpsite
 
-   db:
-     image: mysql:5.7
-     container_name: {my-container-name-db} #好きな名前を入れる
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
+# Database
+  db:
+    image: mysql:5.7
+    #好きな名前を入れる
+    container_name: wp_cs1_db 
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
        MYSQL_ROOT_PASSWORD: root
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
-
+    networks:
+      - wpsite
+networks:
+  wpsite:
 volumes:
-    db_data:
-
+  db_data:
